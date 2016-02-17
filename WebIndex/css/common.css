@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+body{ margin:0px; padding:0px; background:#ffffff; font-size:12px; font-family:"宋体"; color:#000;}
+a{ text-decoration:none; color:#000}
+li{ list-style-type:none;}
+img{ border:none;}
+.center_div{ margin:0 auto; width:1161px;}
+
+#top{ margin:0; width:100%; height:144px;}
+.top_div{ margin:0 auto; width:1161px;}
+.top_intr{height:18px; color:#FFF;}
+.top_intr ul{ float:right; padding-right:30px; background:url(../images/top_bg.jpg) no-repeat; width:363px; height:18px;}
+.top_intr ul li{ float:left; padding-left:10px; width:78px; line-height:18px;  text-align:center;}
+.top_intr ul li a{ color:#fff;}
+.top_intr ul li a:hover{ text-decoration:underline;}
+.top_logo{ float:left; padding-left:30px; width:111px; height:98px; }
+.top_nav{ float:left; margin:28px 0 0 85px; width:900px; height:82px;}
+.top_nav li{ float:left; padding:0 20px;}
+
+.news{ margin:0; background:#aad81a; height:80px;}
+.news_img{float:left;}
+.news_qiehuan{ float:left; margin:15px 0 0 15px; width:700px; height:40px;}
+#news_qiehuan_main{ color:#fff; font-size:15px; height:25px;}
+#news_qiehuan_main ul{  line-height:25px; display:none;}
+#news_qiehuan_main ul li{ list-style-type:none;}
+#news_qiehuan_main ul li a{ color:#fff;}
+#news_qiehuan_main span{ padding-left:30px;}
+#tab{margin-top:-30px;}
+#tab li{float:left; margin-top:35px; padding-left: 10px;  background:url(../images/arrow_02.gif) no-repeat; width:6px; height:6px;list-style-type:none; cursor:pointer;}
+#tab li.current{ margin-top:35px; padding-left:10px; background:url(../images/arrow_01.gif) no-repeat; width:6px; height:6px; }
+
+
+
+#footer{margin:0; width:100%; height:365px;}
+.footer_div{ margin:0 auto; padding:30px 0 0 20px; width:1161px; height:185px; overflow:hidden; }
+.d1{ float:left; padding-right:20px; width:270px; height:155px; overflow:hidden;}
+.d1 dl{ width:156px; height:125px;}
+.d1 dd{ padding-left:8px; width:260px; font-size:12px; line-height:25px; color:#626161;}
+.d1 dd a{font-size:12px; line-height:25px; color:#626161;}
+.d1 dd a:hover{ color:#313030} 
+.d1 dd span{ padding-left:40px;}
+.d1 p img{padding-left:8px; width:156px; height:33px;}
+.hx{ clear:both; margin-top:20px; border-top:solid #b9baba 1px; width:1155px; text-align:center; font-size:0px; height:1px;}
+.footer_bottom{ margin-top:20px; width:1155px; height:86px; color:#777474;}
+.cjx{ width:750px;}
+.cjx li{ float:left; padding:0 2px; line-height:20px;}
+.cjx li a{color:#626161;}
+.cjx li a:hover{ text-decoration:underline}
+.selectfield{width:200px; height:20px; border:#ccc solid 1px;overflow: hidden;}

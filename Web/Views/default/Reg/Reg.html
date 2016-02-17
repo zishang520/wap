@@ -1,0 +1,260 @@
+<!doctype html >
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="_token" content="{$__csrf}" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>{$web_title}-用户注册-{$web_name}</title>
+  <css file="css/bootstrap.min.css" />
+  <!--   <css file="css/bootstrap-theme.min.css" /> -->
+  <css file="css/bootstrapValidator.css" />
+  <css file="css/sub.css" />
+  <js file="js/jquery-2.1.0.js" />
+  <js file="js/bootstrap.min.js" />
+  <js file="js/bootstrapValidator.js" />
+  <script type="text/javascript">
+    $(function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="denglu_content">
+    <div class="denglu_top">
+      <img src="images/zhuce.gif">
+      <br />
+      <span style=" padding-left:450px; color:#3397c9; font-size:14px;">提示：test</span>
+    </div>
+    <!--denglu_top结束-->
+    <div class="denglu_main">
+      <div class="denglu_main_content">
+        <nempty name="error">
+          <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <strong>出现错误：</strong>{$error}
+          </div>
+        </nempty>
+        <form id="defaultForm" action="{$U('Reg/Reg')}" method="post" name="reg" novalidate="novalidate" class="form-horizontal">
+          <input type="hidden" name="__csrf" value="{$__csrf}">
+          <div class="form-group">
+            <label for="Username" class="col-sm-3 control-label" style="padding-top: 0px;">
+              <img src="images/zc_name.gif" />
+            </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="username" id="inputusername3" data-bv-field="username" placeholder="用户昵称">
+            </div>
+            <h5>注册后不可修改</h5>
+          </div>
+          <div class="form-group">
+            <label for="Email" class="col-sm-3 control-label" style="padding-top: 0px;">
+              <img src="images/zc_email.jpg">
+            </label>
+            <div class="col-sm-6">
+              <input type="email" class="form-control" name="email" id="inputemail3" data-bv-field="email" placeholder="邮箱地址">
+            </div>
+            <h5>用于验证用户</h5>
+          </div>
+          <div class="form-group" style="margin-bottom: 0px;">
+            <label for="Safe" class="col-sm-3 control-label" style="padding-top: 0px;">
+              <img src="images/zc_safe.jpg" />
+            </label>
+            <div class="col-sm-6">
+              <input name="safe" type="safe" class="form-control" id="inputsafe3" placeholder="验证码">
+            </div>
+            <img id='img' src="{$U('Safe/Safe')}" onClick="this.src=F();" class="btn btn-link btn-default" title="点击图片刷新" style="padding: 0px 0px;" />
+          </div>
+          <div class="form-group" style="margin-bottom: 0px;">
+            <div class="checkbox col-md-offset-3 col-sm-6 form-control-static" style="margin-top: 0px; margin-bottom: 0px;">
+              <label>
+                <input type="checkbox" name="Registration" value="1"> 我同意
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-link btn-default" style="padding: 0px 0px;">
+                  《注册协议》
+                </button>
+              </label>
+            </div>
+          </div>
+          <div class="form-group" style="text-align: center;">
+            <button type="submit" class="btn btn-primary" name="signup" value="Sign up">下一步</button>
+            <button type="button" class="btn btn-warning" id="resetBtn">重置输入</button>
+          </div>
+        </form>
+        <a href="{$U('Login/Index')}" class="btn btn-link btn-default">已有账户？</a>
+      </div>
+    </div>
+    <!--zhuce_main结束-->
+    <div class="denglu_footer">
+      <div class="rmbq">
+        <img src="images/rmbq.gif">
+      </div>
+      <!--rmbq结束-->
+      <div class="rmbq_content">
+        <ul>
+          <li><a href="#">儿童教育</a>
+          </li>
+          <li><a href="#">儿歌</a>
+          </li>
+          <li><a href="#">儿童故事</a>
+          </li>
+          <li><a href="#">英语单词</a>
+          </li>
+          <li><a href="#">儿童健康</a>
+          </li>
+          <li><a href="#">儿童安全</a>
+          </li>
+          <li><a href="#">儿童运动</a>
+          </li>
+          <li><a href="#">死亡情感故事</a>
+          </li>
+          <li><a href="#">犯错之后</a>
+          </li>
+          <li><a href="#">亲子游戏</a>
+          </li>
+          <li><a href="#">儿童急救</a>
+          </li>
+          <li><a href="#">育儿</a>
+          </li>
+          <li><a href="#">亲子照</a>
+          </li>
+          <li><a href="#">学拼音</a>
+          </li>
+          <li><a href="#">大家来找茬</a>
+          </li>
+          <li><a href="#">儿童英语歌曲</a>
+          </li>
+          <li><a href="#">儿童智力游戏</a>
+          </li>
+          <li><a href="#">幼儿教育知识</a>
+          </li>
+          <li><a href="#">经典儿歌</a>
+          </li>
+          <li><a href="#">寓言故事</a>
+          </li>
+          <li><a href="#">圣诞节儿歌</a>
+          </li>
+          <li><a href="#">九九乘法</a>
+          </li>
+          <li><a href="#">宝宝成长</a>
+          </li>
+        </ul>
+      </div>
+      <!--rmbq_content结束-->
+    </div>
+    <!--zdenglu_footer结束-->
+  </div>
+  <!--denglu_content结束-->
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">注册协议</h4>
+        </div>
+        <div class="modal-body">
+         <nempty name="data">
+          <loop name="data" value="item">
+            {$item.registration:F.decodeHtml}
+          </loop>
+        </nempty>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+  function F() {
+    return ("{$U('Safe/Safe')}&tm=" + Math.random());
+  }
+  $(document).ready(function() {
+    $('#defaultForm').bootstrapValidator({
+     live: 'disabled',
+     message: '此值无效',
+     feedbackIcons: {
+      valid: 'glyphicon glyphicon-ok',
+      invalid: 'glyphicon glyphicon-remove',
+      validating: 'glyphicon glyphicon-refresh'
+    },
+    fields: {
+      username: {
+        message: '用户名称无效',
+        validators: {
+          notEmpty: {
+            message: '用户名是必需的，并且不能是空的'
+          },
+          stringLength: {
+            min: 6,
+            max: 12,
+            message: '用户名必须大于6小于12的字符串'
+          },
+          regexp: {
+            regexp: /^[a-zA-Z][a-zA-Z0-9_]{5,11}$/,
+            message: '用户名只能由字母开始和数字、点、下划线组成'
+          },
+          remote: {
+            url: '{$U('Check/Check')}',
+            message: '该用户名已存在'
+          }
+        }
+      },
+      email: {
+        validators: {
+          notEmpty: {
+            message: '邮箱地址不能为空'
+          },
+          emailAddress: {
+            message: '输入不是有效的邮件地址'
+          },
+          remote: {
+            url: '{$U('Check/Check')}',
+            message: '邮箱地址已被占用'
+          }
+        }
+      },
+      safe: {
+        validators: {
+          notEmpty: {
+            message: '验证码必需的，并且不能是空的'
+          },
+          regexp: {
+            regexp: /^\w{4}$/,
+            message: '验证码由字母和数字组成'
+          },
+          remote: {
+            url: '{$U('Check/CheckSafe')}',
+            message: '验证码错误'
+          }
+        }
+      },
+      Registration: {
+        validators: {
+          notEmpty: {
+            message: '请同意注册协议'
+          }
+        }
+      }
+    }
+  });
+$('#validateBtn').click(function() {
+  $('#defaultForm').bootstrapValidator('validate');
+});
+$('#resetBtn').click(function() {
+  $('#defaultForm').data('bootstrapValidator').resetForm(true);
+});
+});
+</script>
+</body>
+
+</html>

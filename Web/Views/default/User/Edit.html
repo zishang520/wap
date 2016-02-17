@@ -1,0 +1,246 @@
+<!doctype html >
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="_token" content="{$__csrf}" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<title>{$web_title}-会员中心-{$web_name}</title>
+	<link href="css/sub.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<css file="css/bootstrapValidator.css" />
+	<js file="js/jquery-2.1.0.js" />
+	<script type="text/javascript" src="js/tag_plugin.js"></script>
+	<js file="js/bootstrap.min.js" />
+	<js file="js/bootstrapValidator.js" />
+
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('.ie6png');
+</script>
+<![endif]-->
+<script type="text/javascript">
+	$(function() {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+			}
+		});
+	});
+	$(function(){
+		// tab标签切换一
+		$.tag(".juti_right_top", "#juti_right_main ul", "#juti_right_title ul li", "current");
+	})
+</script>
+</head>
+
+<body>
+	<div class="juti_content">
+		<div class="juti_content_top"></div><!--juti_content_top结束-->
+		<div class="juti_content_main">
+			<div class="left">
+				<div class="left_logo">
+					<img src="images/left_sjty.gif">
+				</div><!--left_logo结束-->
+				<div class="left_top">
+					<ul>
+						<li><a href="{$U('User/Vip')}">开通会员</a></li>
+						<li><a href="{$U('User/Buy')}">付费记录</a></li>
+						<li><a href="{$U('User/Index')}">我的资料</a></li>
+						<li><a href="{$U('User/Server')}">服务条款</a></li>
+						<li><a href="{$U('User/About')}">关于我们</a></li>
+						<!-- <li><a href="#">积分</a></li> -->
+					</ul>
+				</div><!--left_top结束-->
+				<div class="left_img">
+					<ul>
+						<!-- <li><a href="#"><img src="images/free_experience.png"></a></li> -->
+						<li><a href="{$U('Msg/Index')}"><img src="images/opinion_feedback.png"></a></li>
+					</ul>
+				</div><!--juti_content_left_img结束-->
+			</div><!--left结束-->
+			<div class="right">
+				<div class="right_top">
+					<div class="right_logo">
+						<img src="images/right_ziliao.gif">
+					</div><!--right_logo结束-->
+					<div class="now_position">
+						您当前所在的位置：<a href="{$U('Home/Index')}">首页</a> 》<a href="{$U('User/Index')}">会员资料</a> 》<a href="{$U('User/Edit')}">修改信息</a>
+					</div><!--now_position结束-->
+				</div><!--right_top结束-->
+				<div id="right_main">             
+					<div id="right_main_tilte2">
+						感谢您的信赖！我们为您提供了多种咨询方式以供选择：您可以通过拨打咨询热线进行电话咨询，或通过下方的咨询留言板进行在线咨询。我们会在您留言的第一时间解答您所遇到的问题。
+					</div><!--right_main_tilte结束-->
+					<div class="ly_content">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+								</button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<nempty name="data">
+							<loop name="data" value="item">
+								<form id="defaultForm" action="{$U('User/Edit')}" method="post" name="edit" novalidate="novalidate" class="form-horizontal">
+									<input type="hidden" name="__csrf" value="{$__csrf}">
+									<div class="form-group">
+										<label for="inputUsername3" class="col-sm-2 control-label">登陆名</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control input-sm disabled" id="inputUsername3" placeholder="登陆名" disabled="disabled" value="{$item.username}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputFullname3" class="col-sm-2 control-label">姓名</label>
+										<div class="col-sm-6">
+											<input type="text" name="fullname" class="form-control input-sm" id="inputFullname3" placeholder="姓名" value="{$item.fullname}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" class="form-control input-sm disabled" id="inputEmail3" placeholder="邮箱地址" disabled="disabled" value="{$item.email}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputMobile3" class="col-sm-2 control-label">手机</label>
+										<div class="col-sm-6">
+											<input type="tel" class="form-control input-sm disabled" id="inputMobile3" placeholder="手机号码" disabled="disabled" value="{$item.mobile}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputAdress3" class="col-sm-2 control-label">性别</label>
+										<div class="col-sm-6">
+											<label class="radio-inline">
+												<input type="radio" name="sex" id="inlineRadio1" value="option1"<eq name="item.sex" value="1"> checked="checked"</eq>> 男
+											</label>
+											<label class="radio-inline">
+												<input type="radio" name="sex" id="inlineRadio2" value="option2"<eq name="item.sex" value="2"> checked="checked"</eq>> 女
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputQq3" class="col-sm-2 control-label">QQ</label>
+										<div class="col-sm-6">
+											<input type="text" name="qq" class="form-control input-sm" id="inputQq3" placeholder="QQ号码" value="{$item.qq}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputAdress3" class="col-sm-2 control-label">地址</label>
+										<div class="col-sm-6">
+											<input type="text" name="adress" class="form-control input-sm" id="inputAdress3" placeholder="地址" value="{$item.adress}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputSafe3" class="col-sm-2 control-label">验证码</label>
+										<div class="col-sm-4">
+											<input type="text" name="safe" class="form-control input-sm" id="inputSafe3" placeholder="验证码">
+										</div>
+										<img id='img' src="{$U('Safe/Safe')}" onClick="this.src=F();" class="btn btn-link btn-default" title="点击图片刷新" style="padding: 0px 0px;" />
+									</div>
+									<div class="form-group">
+										<div class="col-sm-6" style="text-align: center;">
+											<button type="submit" class="btn btn-default" name="signup" value="Sign up">保存信息</button>
+											<button type="reset" class="btn btn-warning">重置输入</button>
+										</div>
+									</div>
+								</form>
+							</loop>
+						</nempty>
+					</div><!--ly_content-->
+				</div><!--right_main结束-->
+			</div><!--right结束-->
+		</div><!--juti_content_main结束-->
+		<div class="juti_content_footer"></div><!--juti_content_footer结束-->
+	</div><!--juti_content结束-->
+	<script type="text/javascript">
+		function F() {
+			return ("{$U('Safe/Safe')}&tm=" + Math.random());
+		}
+		$(document).ready(function() {
+			$('#defaultForm').bootstrapValidator({
+				live: 'disabled',
+				message: '此值无效',
+				feedbackIcons: {
+					valid: 'glyphicon glyphicon-ok',
+					invalid: 'glyphicon glyphicon-remove',
+					validating: 'glyphicon glyphicon-refresh'
+				},
+				fields: {
+					fullname: {
+						message: '姓名无效',
+						validators: {
+							notEmpty: {
+								message: '姓名是必需的，并且不能是空的'
+							},
+							stringLength: {
+								max: 1,
+								max: 12,
+								message: '姓名长度不能大于12位'
+							},
+							regexp: {
+								regexp: /^[\u4e00-\u9fa5]+$/,
+								message: '姓名只能是中文'
+							},
+						}
+					},
+					sex: {
+						validators: {
+							notEmpty: {
+								message: '性别是必需的，并且不能是空的'
+							}
+						}
+					},
+					qq: {
+						message: 'qq号码无效',
+						validators: {
+							stringLength: {
+								min: 5,
+								max: 11,
+								message: 'QQ号码不能小于5位且超过11位'
+							},
+							regexp: {
+								regexp: /^[1-9][0-9]{4,10}$/,
+								message: 'QQ号码只能是大于5位小于11位的数字'
+							},
+						}
+					},
+					adress: {
+						message: '地址是无效的',
+						validators: {
+							stringLength: {
+								max: 60,
+								message: '地址长度不能大于60位'
+							}
+						}
+					},
+					safe: {
+						validators: {
+							notEmpty: {
+								message: '验证码必需的，并且不能是空的'
+							},
+							regexp: {
+								regexp: /^\w{4}$/,
+								message: '验证码由字母和数字组成'
+							},
+							remote: {
+								url: '{$U('Check/CheckSafe')}',
+								message: '验证码错误'
+							}
+						}
+					}
+				}
+			});
+$('#validateBtn').click(function() {
+	$('#defaultForm').bootstrapValidator('validate');
+});
+$('#resetBtn').click(function() {
+	$('#defaultForm').data('bootstrapValidator').resetForm(true);
+});
+});
+</script>
+</body>
+</html>

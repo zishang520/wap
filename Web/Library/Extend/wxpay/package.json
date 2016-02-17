@@ -1,0 +1,14 @@
+{
+  "name": "wxpay",
+  "version": "1.0.0",
+  "description": "",
+  "keywords" : ["wxpay"],
+  "name" : "mail",
+  "version" : "1.0.0",
+  "description" : "微信签名",
+  "keywords" : ["wxsign"],
+  "homepage" : "http://zishang520.com",
+  "license" : "GPLv3",
+  "files" : ["sign.js"],
+  "main" : "wxpay/sign.js"
+}

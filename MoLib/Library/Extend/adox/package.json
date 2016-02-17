@@ -1,0 +1,22 @@
+﻿{
+	"name" : "adox",
+	"version" : "1.0.0",
+	"description" : "ADO adox的再次封装。",
+	"keywords" : ["adox","ado"],
+	"homepage" : "http://mpi.thinkasp.cn/?/mpi/package/info/adox",
+	"bugs" : {
+		"url" : "http://mpi.thinkasp.cn/?/mpi/package/info/adox",
+		"email" : "zhanghuiguoanlige@126.com"
+	},
+	"license" : "GPLv3",
+	"author" : 
+	{
+		"name" : "anlige",
+		"email" : "zhanghuiguoanlige@126.com",
+		"url" : "http://m.thinkasp.cn/"
+	},
+	"files" : [
+		"index.js"
+	],
+	"main" : "adox"
+}

@@ -1,0 +1,87 @@
+<extend file="../layout/layout.html" />
+<selection name="title">会员管理</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							用户管理
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation" class="active">
+									<a href="{$U('User/Index')}" class="btn btn-link btn-block">全部用户</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('User/Create')}" class="btn btn-link btn-block">添加用户</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('User/VipLog')}" class="btn btn-link btn-block">充值记录</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li class="active">会员列表</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<div class="table-responsive">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="col-md-1">ID</th>
+										<th>状态</th>
+										<th>用户昵称</th>
+										<th>邮箱地址</th>
+										<th>手机号码</th>
+										<th>注册日期</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<loop name="data" value="item">
+										<tr>
+											<td scope="row">{$item.id}</td>
+											<td><eq name="item.islogin" value="0">正常</else>禁登</eq></td>
+											<td><a href="{$U('User/Show','id='+{$@item.id\})}">{$item.username}</a></td>
+											<td><nempty name="item.email">{$item.email} <eq name="item.isemail" value="1">已认证</else>未认证</eq></else>未填写</nempty></td>
+											<td><nempty name="item.mobile">{$item.mobile} <eq name="item.ismobile" value="1">已认证</else>未认证</eq></else>未填写</nempty></td>
+											<td>{$item.regtime:F.untimespan}</td>
+											<td>
+												<a href="{$U('User/Edit','id='+{$@item.id\})}" class="btn btn-success btn-xs">编辑</a>
+												<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal"  onclick="Del('{$item.id}');">删除</button>
+											</td>
+										</tr>
+									</loop>
+								</tbody>
+							</table>
+						</div>
+						<page for="data" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+	<div class="Del"></div>
+	<script type="text/javascript">
+		function Del(id){
+			var str='<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">' + '<div class="modal-dialog" role="document">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' + '<h4 class="modal-title" id="exampleModalLabel">提示信息</h4>' + '</div>' + '<form action="{$U('User/Del')}" method="post">' + '<input type="hidden" name="__csrf" value="{$__csrf}">' + '<div class="modal-body">' + '<input type="hidden"name="id" value="'+id+'">' + '<div class="alert alert-danger" role="alert">删除该用户信息且不可恢复，确认继续？？</div>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">关闭窗口</button>' + '<button type="submit" class="btn btn-danger btn-sm">确认删除</button>' + '</div>' + '</form>' + '</div>' + '</div>' + '</div>';
+			$('.Del').html(str);
+		}
+	</script>
+</selection>

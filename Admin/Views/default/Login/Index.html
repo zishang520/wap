@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<!--
+  @@@@@@@@@@@X5111111111111111sssss111sri;;::,:;is11
+  @@@@@@@@@@X51111111111111sssrrrrrrssri;;;rsr;:;;is
+  @@@@@@@@@@555h11ssrrrrrriiiiiii;iiii;;;;s555hs;;;;
+  @@@@@@@@@@hri;;;;;;;;;;;;::;;::::::::;:ihh55S5sii;
+  @@@@@@    ,::;;;iiirrsssri:,,,,,.,,,,::s1hh5551irr
+  @@    .,:;;irs1hh5555hh11si,,,,.. ..,,;rs1hh551irr
+  @  .,:;is15S399933SSS55hh1si:,,,,...,,;irs11h1rirr
+  @  :is539GG88899933SSS55hh1r::::::,,,,irss1hh1;ii;
+  @ .:r98GGGGG888999S5SSS55hhi;;;;i;::,:irss1hhs;ri;
+  @  :r58GGGGG88935s1S3SSS55s;iiiiri;;:;ss111hhiir;i
+  @@ .:i1399Sh5hsi;s33333SSs;rr;rssrii;i11hhhhr;ri;i
+  @@@  ,;r1hhh5hsr5999933S1irr;is1srii;ihh5551irriis
+  @@@@@  .;15Shs198888995rrsr;;s111r;i;i55555hrrr;i1
+  @@@@@@  ,rsrsS8GGG889hrssi:ir111si;iii5SSSS5srr;r1
+  @@@@  .:rir59GGGGG85ss1s;,;iii;;;;iriiS3333Ssrr;i1
+  @@   ,iirh9GGGGG8S1shhs, .,,:::;ir11rrS399331rri;s
+  @  .;iis38GGGGG8hshSShsiiiiir1hhhhhh11399999Shsr:r
+    ,iir58GGGGG9511SS51sssrr533S555S39999888883hsr,:
+   .ii19GGGGG8Srir111hh53399G83398G8S5hh159GGG3hrs,,
+   :i18GGGGGGShhSS3988GGGGGGGGGGG9Shshhh1s15S385ri. 
+   ,rS8GGGGGGGGGGGGGGGGGG8933935hsrssi;;;iiiir11i,  
+   .ih8GGGGGGGGGGGGGGG835h1ss1sri;:.   @@    .,.    
+  @ :rh98GGGGGGG893SS5hs1h1ri:.    @@@@@@@@@@@@@ @@@
+  @@ :i1555555hhhsssriii,.   @@@@@@@@@@@@@@@@@@@@@@@
+  @@  .;irrrrriiii;,    @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+-->
+<head>
+  <meta content="IE=10.000" http-equiv="X-UA-COMPATIBLE">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="_token" content="{$__csrf}" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>登录后台</title>  
+  <css file="css/bootstrap.min.css" />
+  <css file="css/bootstrap-theme.min.css" />
+  <css file="css/reset.css" />
+  <js file="js/jquery-2.1.0.js" />
+  <js file="js/bootstrap.min.js" />
+  <script type="text/javascript">
+    $(function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+        }
+      });
+    });
+  </script>
+</head> 
+<body>
+  <div class="modal fade in" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: block; padding-right: 17px; position: initial;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">后台管理</h4>
+        </div>
+        <div class="modal-body">
+          <nempty name="error">
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <strong>出现错误：</strong>{$error}
+            </div>
+          </nempty>
+          <form class="form-horizontal" action="{$U('Login/Index')}" method="post">
+            <input type="hidden" name="__csrf" value="{$__csrf}">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">账号</label>
+              <div class="col-sm-10">
+                <input name="username" type="text" class="form-control" id="inputEmail3" placeholder="账号">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+              <div class="col-sm-10">
+                <input name="password" type="password" class="form-control" id="inputPassword3" autocomplete="off" placeholder="密码">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
+              <div class="col-sm-10">
+                <input name="safe" type="safe" class="form-control" id="inputsafe3" placeholder="验证码">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <img id='img' src="{$U('Login/Safe')}" onClick="this.src=F();"/> 点击图片刷新
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-info">登陆</button> <button type="reset" class="btn btn-warning">重置</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          23333
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function F()
+    {
+      return ("{$U('Login/Safe')}&tm="+Math.random());
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<!--
+	@@@@@@@@@@@X5111111111111111sssss111sri;;::,:;is11
+	@@@@@@@@@@X51111111111111sssrrrrrrssri;;;rsr;:;;is
+	@@@@@@@@@@555h11ssrrrrrriiiiiii;iiii;;;;s555hs;;;;
+	@@@@@@@@@@hri;;;;;;;;;;;;::;;::::::::;:ihh55S5sii;
+	@@@@@@    ,::;;;iiirrsssri:,,,,,.,,,,::s1hh5551irr
+	@@    .,:;;irs1hh5555hh11si,,,,.. ..,,;rs1hh551irr
+	@  .,:;is15S399933SSS55hh1si:,,,,...,,;irs11h1rirr
+	@  :is539GG88899933SSS55hh1r::::::,,,,irss1hh1;ii;
+	@ .:r98GGGGG888999S5SSS55hhi;;;;i;::,:irss1hhs;ri;
+	@  :r58GGGGG88935s1S3SSS55s;iiiiri;;:;ss111hhiir;i
+	@@ .:i1399Sh5hsi;s33333SSs;rr;rssrii;i11hhhhr;ri;i
+	@@@  ,;r1hhh5hsr5999933S1irr;is1srii;ihh5551irriis
+	@@@@@  .;15Shs198888995rrsr;;s111r;i;i55555hrrr;i1
+	@@@@@@  ,rsrsS8GGG889hrssi:ir111si;iii5SSSS5srr;r1
+	@@@@  .:rir59GGGGG85ss1s;,;iii;;;;iriiS3333Ssrr;i1
+	@@   ,iirh9GGGGG8S1shhs, .,,:::;ir11rrS399331rri;s
+	@  .;iis38GGGGG8hshSShsiiiiir1hhhhhh11399999Shsr:r
+	  ,iir58GGGGG9511SS51sssrr533S555S39999888883hsr,:
+	 .ii19GGGGG8Srir111hh53399G83398G8S5hh159GGG3hrs,,
+	 :i18GGGGGGShhSS3988GGGGGGGGGGG9Shshhh1s15S385ri. 
+	 ,rS8GGGGGGGGGGGGGGGGGG8933935hsrssi;;;iiiir11i,  
+	 .ih8GGGGGGGGGGGGGGG835h1ss1sri;:.   @@    .,.    
+	@ :rh98GGGGGGG893SS5hs1h1ri:.    @@@@@@@@@@@@@ @@@
+	@@ :i1555555hhhsssriii,.   @@@@@@@@@@@@@@@@@@@@@@@
+	@@  .;irrrrriiii;,    @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="_token" content="{$__csrf}" />
+	<title>{$web_title}-<selection name="title">标题</selection>-{$web_name}</title>
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<css file="css/bootstrap.min.css" />
+	<!-- <css file="css/bootstrap-theme.min.css" /> -->
+	<css file="css/bootstrap-datetimepicker.min.css" />
+	<css file="css/bootstrap-toggle.min.css" />
+	<css file="css/select2.min.css" />
+	<js file="js/jquery-2.1.0.js" />
+	<js file="js/bootstrap.min.js" />
+	<js file="js/bootstrap-datetimepicker.js" />
+	<js file="js/locales/bootstrap-datetimepicker.zh-CN.js" />
+	<js file="js/bootstrap-toggle.js" />
+	<js file="js/select2.min.js" />
+	<script type="text/javascript">
+		$(function() {
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+				}
+			});
+		});
+	</script>
+	<selection name="header">
+	<!--
+	@@@@@@@@@@@X5111111111111111sssss111sri;;::,:;is11
+	@@@@@@@@@@X51111111111111sssrrrrrrssri;;;rsr;:;;is
+	@@@@@@@@@@555h11ssrrrrrriiiiiii;iiii;;;;s555hs;;;;
+	@@@@@@@@@@hri;;;;;;;;;;;;::;;::::::::;:ihh55S5sii;
+	@@@@@@    ,::;;;iiirrsssri:,,,,,.,,,,::s1hh5551irr
+	@@    .,:;;irs1hh5555hh11si,,,,.. ..,,;rs1hh551irr
+	@  .,:;is15S399933SSS55hh1si:,,,,...,,;irs11h1rirr
+	@  :is539GG88899933SSS55hh1r::::::,,,,irss1hh1;ii;
+	@ .:r98GGGGG888999S5SSS55hhi;;;;i;::,:irss1hhs;ri;
+	@  :r58GGGGG88935s1S3SSS55s;iiiiri;;:;ss111hhiir;i
+	@@ .:i1399Sh5hsi;s33333SSs;rr;rssrii;i11hhhhr;ri;i
+	@@@  ,;r1hhh5hsr5999933S1irr;is1srii;ihh5551irriis
+	@@@@@  .;15Shs198888995rrsr;;s111r;i;i55555hrrr;i1
+	@@@@@@  ,rsrsS8GGG889hrssi:ir111si;iii5SSSS5srr;r1
+	@@@@  .:rir59GGGGG85ss1s;,;iii;;;;iriiS3333Ssrr;i1
+	@@   ,iirh9GGGGG8S1shhs, .,,:::;ir11rrS399331rri;s
+	@  .;iis38GGGGG8hshSShsiiiiir1hhhhhh11399999Shsr:r
+	  ,iir58GGGGG9511SS51sssrr533S555S39999888883hsr,:
+	 .ii19GGGGG8Srir111hh53399G83398G8S5hh159GGG3hrs,,
+	 :i18GGGGGGShhSS3988GGGGGGGGGGG9Shshhh1s15S385ri. 
+	 ,rS8GGGGGGGGGGGGGGGGGG8933935hsrssi;;;iiiir11i,  
+	 .ih8GGGGGGGGGGGGGGG835h1ss1sri;:.   @@    .,.    
+	@ :rh98GGGGGGG893SS5hs1h1ri:.    @@@@@@@@@@@@@ @@@
+	@@ :i1555555hhhsssriii,.   @@@@@@@@@@@@@@@@@@@@@@@
+	@@  .;irrrrriiii;,    @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+-->
+</selection>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">切换导航</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{$U('Home/Index')}">管理系统</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li<eq name="method" value="'Home'"> class="active"</eq>><a href="{$U('Home/Index')}">仪表盘<span class="sr-only">(current)</span></a></li>
+					<li<eq name="method" value="'User'"> class="active"</eq>><a href="{$U('User/Index')}">用户管理</a></li>
+					<li<eq name="method" value="'Class'"> class="active"</eq>><a href="{$U('Class/Index')}">栏目管理</a></li>
+					<li<eq name="method" value="'Article'"> class="active"</eq>><a href="{$U('Article/Index')}">内容管理</a></li>
+					<li<eq name="method" value="'New'"> class="active"</eq>><a href="{$U('New/Index')}">新闻中心</a></li>
+					<li<eq name="method" value="'Notice'"> class="active"</eq>><a href="{$U('Notice/Index')}">用户公告</a></li>
+					<li class="dropdown<eq name="method" value="'Basics'"> active</eq>">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">基础信息 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li role="separator" class="divider"></li>
+							<li><a href="{$U('Basics/Service')}">服务条款</a></li>
+							<li><a href="{$U('Basics/About')}">关于我们</a></li>
+							<li><a href="{$U('Basics/Registration')}">注册协议</a></li>
+							<li role="separator" class="divider"></li>
+						</ul>
+					</li>
+					<li class="dropdown<eq name="method" value="'SysWeb'"> active</eq>">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">系统设置 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li role="separator" class="divider"></li>
+							<li><a href="{$U('SysWeb/Webinfo')}">网站信息</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="{$U('SysWeb/Email')}">邮箱设置</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="{$U('SysWeb/EmailTemplate','id=1')}">邮件模板</a></li>
+							<li><a href="{$U('SysWeb/SmsTemplate')}">短信模板</a></li>
+							<li role="separator" class="divider"></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation"><a href="{$U('Msg/Index')}">网站留言 <span class="badge">{$Msglook}</span></a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{$adminname}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="{$U('Login/Logout')}">注销</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<selection name="body">主体</selection>
+	<selection name="foot">底部</selection>
+	<div class="container" style="margin-top: 20px;">
+		<div id="footer" style="text-align: center; border-top: dashed 3px #eeeeee; padding: 20px;">
+			©2015 <a href="http://zishang520.com">win紫殇</a>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$('select').select2();
+</script>
+</html>

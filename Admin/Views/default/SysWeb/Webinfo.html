@@ -1,0 +1,116 @@
+<extend file="../layout/layout.html" />
+<selection name="title">网站信息</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							系统设置
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation" class="active">
+									<a href="{$U('SysWeb/Webinfo')}" class="btn btn-link btn-block">网站信息</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('SysWeb/Email')}" class="btn btn-link btn-block">邮箱设置</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('SysWeb/EmailTemplate','id=1')}" class="btn btn-link btn-block">邮箱模板</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('SysWeb/SmsTemplate')}" class="btn btn-link btn-block">短信模板</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li class="active">网站信息</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<loop name="data" value="item">
+							<form action="{$U('SysWeb/Webinfo')}" method="post" class="form-horizontal">
+								<input type="hidden" name="__csrf" value="{$__csrf}">
+								<div class="form-group">
+									<label for="inputTitle3" class="col-sm-2 control-label">网站标题</label>
+									<div class="col-sm-6">
+										<input name="web_title" type="text" class="form-control" id="inputTitle3" placeholder="网站标题 整个网站的最开始标题" value="{$item.web_title}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="pic" class="col-sm-2 control-label">LOGO</label>
+									<div class="col-sm-3">
+										<input name="web_logo" type="text" class="form-control" id="pic" placeholder="缩略图" value="{$item.web_logo}">
+									</div>
+									<include file="../Upload/CThumb.html" />
+								</div>
+								<div class="form-group">
+									<label for="inputName3" class="col-sm-2 control-label">网站名称</label>
+									<div class="col-sm-6">
+										<input name="web_name" type="text" class="form-control" id="inputName3" placeholder="网站名称 显示与标题最后面" value="{$item.web_name}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputUrl3" class="col-sm-2 control-label">网站链接</label>
+									<div class="col-sm-6">
+										<input name="web_url" type="url" class="form-control" id="inputUrl3" placeholder="网站链接 要加上http://" value="{$item.web_url}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputKey3" class="col-sm-2 control-label">网站关键词</label>
+									<div class="col-sm-6">
+										<input name="keywords" type="text" class="form-control" id="inputKey3" placeholder="关键词 空格分割" value="{$item.keywords}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputDes3" class="col-sm-2 control-label">网站描述</label>
+									<div class="col-sm-6">
+										<textarea name="description" type="text" class="form-control" rows="5" id="inputDes3" placeholder="网站描述 网站的描述内容">{$item.description}</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputRecord3" class="col-sm-2 control-label">网站备案号</label>
+									<div class="col-sm-6">
+										<input name="record" type="text" class="form-control" id="inputRecord3" placeholder="备案号 如:瑜12号 123456-2b" value="{$item.record}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputBuinformation3" class="col-sm-2 control-label">底部信息</label>
+									<div class="col-sm-6">
+										<textarea name="buinformation" type="text" class="form-control" rows="5" id="inputBuinformation3" maxlength="500" placeholder="底部信息 支持HTML">{$item.buinformation}</textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputCopyright3" class="col-sm-2 control-label">版权信息</label>
+									<div class="col-sm-6">
+										<input name="copyright" type="text" class="form-control" id="inputCopyright3" placeholder="版权信息 用于底部显示" value="{$item.copyright}">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-info">更新信息</button>
+									</div>
+								</div>
+							</form>
+						</loop>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+</selection>

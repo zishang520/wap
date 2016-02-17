@@ -1,0 +1,71 @@
+<extend file="../layout/layout.html" />
+<selection name="title">会员管理</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							用户管理
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation">
+									<a href="{$U('User/Index')}" class="btn btn-link btn-block">全部用户</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('User/Create')}" class="btn btn-link btn-block">添加用户</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('User/VipLog')}" class="btn btn-link btn-block">充值记录</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li><a href="{$U('User/Index')}">会员列表</a></li>
+						<li class="active">会员信息</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<loop name="data" value="item">
+							<ul class="list-group col-sm-2" style="padding-right: 0px;">
+								<li class="list-group-item"><strong>用户名称</strong></li>
+								<li class="list-group-item"><strong>手机号码</strong></li>
+								<li class="list-group-item"><strong>邮箱地址</strong></li>
+								<li class="list-group-item"><strong>VIP 状态</strong></li>
+								<li class="list-group-item"><strong>注册日期</strong></li>
+								<li class="list-group-item"><strong>最近登录</strong>：</li>
+								<li class="list-group-item"><strong>注册ＩＰ</strong>：</li>
+								<li class="list-group-item"><strong>最近登录</strong>：</li>
+							</ul>
+							<ul class="list-group col-sm-5">
+								<li class="list-group-item">{$item.username} <eq name="item.islogin" value="1"><span class="text-warning">禁止登录</span></else><span class="text-success">正常状态</span></eq></li>
+								<li class="list-group-item">{$item.mobile} <eq name="item.ismobile" value="1"><span class="text-success">已认证</span></else><span class="text-danger">未认证</span></eq></li>
+								<li class="list-group-item">{$item.email} <eq name="item.isemail" value="1"><span class="text-success">已认证</span></else><span class="text-danger">未认证</span></eq></li>
+								<li class="list-group-item"><eq name="item.isvip" value="1"><span class="text-danger">VIP会员到期时间:{$item.vipexpire:F.untimespan}</span></else><span class="text-info">普通用户</span></eq></li>
+								<li class="list-group-item">{$item.regtime:F.untimespan}</li>
+								<li class="list-group-item">{$item.lasttime:F.untimespan}</li>
+								<li class="list-group-item">{$item.regip:int2ip}</li>
+								<li class="list-group-item">{$item.lastip:int2ip}</li>
+							</ul>
+						</loop>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+</selection>

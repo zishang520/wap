@@ -1,0 +1,86 @@
+<extend file="../layout/layout.html" />
+<selection name="title">内容管理</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							内容管理
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation">
+									<a href="{$U('Article/Index')}" class="btn btn-link btn-block">全部内容</a>
+								</li>
+								<li role="presentation" class="active">
+									<a href="{$U('Article/Class')}" class="btn btn-link btn-block">分类查看</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('Article/Create')}" class="btn btn-link btn-block">添加内容</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li><a href="{$U('Article/Class')}">分类查看</a></li>
+						<li class="active">
+							{$classname}
+						</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<div class="table-responsive">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="col-md-1">内容ID</th>
+										<th>标题</th>
+										<th>栏目</th>
+										<th>发布日期</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<loop name="data" value="item">
+										<tr>
+											<td scope="row">{$item.id}</td>
+											<td><a href="{$U('Article/Show','id='+{$@item.id\})}">{$item.title:F.string.left=10}</a></td>
+											<td>{$classname}</td>
+											<td>{$item.releasetime:F.untimespan}</td>
+											<td>
+												<a href="{$U('Article/Edit','id='+{$@item.id\})}" class="btn btn-success btn-xs">编辑</a>
+												<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#exampleModal"  onclick="Del('{$item.id}');">删除</button>
+											</td>
+										</tr>
+									</loop>
+								</tbody>
+							</table>
+						</div>
+						<page for="data" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+	<div class="Del"></div>
+	<script type="text/javascript">
+		function Del(id){
+			var str='<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">' + '<div class="modal-dialog" role="document">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' + '<h4 class="modal-title" id="exampleModalLabel">提示信息</h4>' + '</div>' + '<form action="{$U('Article/Del')}" method="post">' + '<input type="hidden" name="__csrf" value="{$__csrf}">' + '<div class="modal-body">' + '<input type="hidden" name="id" value="'+id+'">' + '<div class="alert alert-danger" role="alert">删除该内容且不可恢复，确认继续？？</div>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">关闭窗口</button>' + '<button type="submit" class="btn btn-danger btn-sm">确认删除</button>' + '</div>' + '</form>' + '</div>' + '</div>' + '</div>';
+			$('.Del').html(str);
+		}
+	</script>
+</selection>

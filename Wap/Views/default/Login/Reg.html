@@ -1,0 +1,239 @@
+<!doctype html >
+<html>
+<head>
+  <meta content="IE=10.000" http-equiv="X-UA-COMPATIBLE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="_token" content="{$__csrf}" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>用户注册</title>  
+  <css file="Public/css/bootstrap.min.css" />
+  <!--   <css file="Public/css/bootstrap-theme.min.css" /> -->
+  <css file="Public/css/bootstrapValidator.min.css" />
+  <css file="Default/css/sub.css" />
+  <js file="Public/js/jquery-2.1.0.js" />
+  <js file="Public/js/bootstrap.min.js" />
+  <js file="Public/js/bootstrapValidator.min.js" />
+  <script type="text/javascript">
+    $(function() {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+        }
+      });
+    });
+  </script>
+</head> 
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="row">
+        <div class="logo col-md-4">
+          <h1><a href="">儿童 <span class="red">.</span></a></h1>
+        </div>
+        <div class="links col-md-8">
+          <a class="home" href="" rel="tooltip" data-placement="bottom" data-original-title="Home"></a>
+          <a class="blog" href="" rel="tooltip" data-placement="bottom" data-original-title="Blog"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="register-container container">
+    <div class="row">
+      <div class="visible-lg visible-md col-md-5">
+        <img src="Public/img/iphone.png" alt="">
+      </div>
+      <div class="register col-md-6">
+        <form id="defaultForm" action="{$U('Login/Reg')}" method="post" name="reg" novalidate="novalidate">
+          <input type="hidden" name="__csrf" value="{$__csrf}">
+          <h3><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 赶快注册 <span class="red"><strong>芝麻</strong></span></h3>
+          <nempty name="error">
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <strong>出现错误：</strong>{$error}
+            </div>
+          </nempty>
+          <div class="form-group">
+            <label for="Username">用户名称</label>
+            <input id="username" name="username" type="text" class="form-control" id="exampleInputText" placeholder="用户昵称">
+          </div>
+          <div class="form-group">
+            <label for="Email">邮箱地址</label>
+            <input type="email" class="form-control" name="email" data-bv-field="email" placeholder="邮箱地址">
+          </div>
+          <div class="form-group">
+            <label for="Mobile">手机号码</label>
+            <input id="mobile" name="mobile" type="tel" class="form-control" id="exampleInputTel" placeholder="手机号码">
+          </div>
+          <div class="form-group">
+            <label for="Password">登陆密码</label>
+            <input type="password" class="form-control" name="password" data-bv-field="password" placeholder="登陆密码">
+          </div>
+          <div class="form-group">
+            <label for="Rpassword">确认密码</label>
+            <input type="password" class="form-control" name="confirmPassword" data-bv-field="confirmPassword" placeholder="确认密码">
+          </div>
+          <div class="form-group">
+            <label for="Safe">验证码</label>
+            <input name="safe" type="safe" class="form-control" id="inputsafe3" placeholder="验证码">
+          </div>
+          <div class="form-group">
+            <img id='img' src="{$U('Login/Safe')}" onClick="this.src=F();"/> 点击图片刷新
+          </div>
+          <div class="form-group">
+            <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+              <div class="btn-group" role="group">
+               <button type="submit" class="btn btn-primary btn-default" name="signup" value="Sign up">立即登录</button>
+             </div>
+             <div class="btn-group" role="group">
+               <button type="button" class="btn btn-info btn-default" id="resetBtn">重置输入</button>
+             </div>
+           </div>
+           <button type="button" class="btn btn-link btn-default btn-block">前往登陆</button>
+         </div>
+       </div>
+     </form>
+   </div>
+ </div>
+</div>
+<div align="center">Copyright © 2014.Company name All rights reserved.</div>
+<!-- Javascript -->
+<script type="text/javascript">
+  function F()
+  {
+    return ("{$U('Login/Safe')}&tm="+Math.random());
+  }
+  $(document).ready(function() {
+    // Generate a simple captcha
+    $('#defaultForm').bootstrapValidator({
+      //        live: 'disabled',
+      message: '此值无效',
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields: {
+        username: {
+          message: '用户名称无效',
+          validators: {
+            notEmpty: {
+              message: '用户名是必需的，并且不能是空的'
+            },
+            stringLength: {
+              min: 6,
+              max: 30,
+              message: '用户名必须大于6小于30的字符串'
+            },
+            regexp: {
+              regexp: /^[a-zA-Z0-9_\.]+$/,
+              message: '用户名只能由字母、数字、点和下划线组成'
+            },
+            remote: {
+              url: '{$U('Login/Check')}',
+              message: '该用户名已被占用'
+            },
+            different: {
+              field: 'password',
+              message: '用户名和密码不能是相同的'
+            }
+          }
+        },
+        email: {
+          validators: {
+            notEmpty: {
+              message: '邮箱地址不能为空'
+            },
+            emailAddress: {
+              message: '输入不是有效的邮件地址'
+            },
+            remote: {
+              url: '{$U('Login/Check')}',
+              message: '邮箱地址已被占用'
+            }
+          }
+        },
+        mobile: {
+          validators: {
+            notEmpty: {
+              message: '手机号码不能为空'
+            },
+            stringLength: {
+              min: 11,
+              max: 11,
+              message: '手机号码必须为11位'
+            },
+            regexp: {
+              regexp: /^0?1[3|4|5|7|8][0-9]\d{8}$/,
+              message: '请输入正确的手机号码'
+            },
+            remote: {
+              url: '{$U('Login/Check')}',
+              message: '手机号码已被占用'
+            }
+          }
+        },
+        password: {
+          validators: {
+            notEmpty: {
+              message: '密码是必需的，并且不能是空的'
+            },
+            stringLength: {
+              min: 6,
+              max: 30,
+              message: '密码必须大于6小于30的字符串'
+            },
+            regexp: {
+              regexp: /^[a-zA-Z0-9_\.]+$/,
+              message: '密码只能由字母、数字、点和下划线组成'
+            },
+            identical: {
+              field: 'confirmPassword',
+              message: '密码和确认密码不一致'
+            },
+            different: {
+              field: 'username',
+              message: '密码不能和用户名是相同的'
+            }
+          }
+        },
+        confirmPassword: {
+          validators: {
+            notEmpty: {
+              message: '确认密码是必需的，并且不能是空的'
+            },
+            identical: {
+              field: 'password',
+              message: '确认密码和你键入的密码不一致'
+            },
+            different: {
+              field: 'username',
+              message: '密码不能和用户名是相同的'
+            }
+          }
+        },
+        safe: {
+          validators: {
+            notEmpty: {
+              message: '验证码必需的，并且不能是空的'
+            },
+            remote: {
+              url: '{$U('Login/CheckSafe')}',
+              message: '验证码错误'
+            }
+          }
+        }
+      }
+    });
+
+    // Validate the form manually
+    $('#validateBtn').click(function() {
+      $('#defaultForm').bootstrapValidator('validate');
+    });
+    $('#resetBtn').click(function() {
+      $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+  });
+</script>
+</body>
+</html>

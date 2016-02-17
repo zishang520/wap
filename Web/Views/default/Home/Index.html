@@ -1,0 +1,324 @@
+<!doctype html >
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="_token" content="{$__csrf}" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>{$web_title}-网站首页-{$web_name}</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/common.css" rel="stylesheet" type="text/css">
+  <js file="js/jquery-2.1.0.js" />
+  <script type="text/javascript" src="js/tag_plugin.js"></script>
+  <script src="Scripts/swfobject_modified.js" type="text/javascript"></script>
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('.ie6png');
+</script>
+<![endif]-->
+<script type="text/javascript">
+    $(function(){
+        // tab标签切换一
+        $.tag(".news_qiehuan", "#news_qiehuan_main ul", "#tab ul li", "current");
+        // tab标签切换二
+        $.tag("#qiehuan", "#qiehuan_main ul", "#qiehuan_top ul li", "current");
+    });
+    $(function() {
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+        }
+    });
+  });
+</script>
+</head>
+
+<body>
+    <div id="top">
+        <div class="center_div">
+            <div class="top_intr">
+                <ul>
+                    <li><a href="{$U('User/Vip')}">开通VIP</a></li>
+                    <li><a href="{$U('Class/FreeIndex')}">体验内容</a></li>
+                    <li><a href="{$U('Parent/List')}">家长社区</a></li>
+                    <li><a href="{$U('User/Index')}">会员中心</a></li>
+                </ul>
+            </div><!--top_intr结束-->
+            <div class="top_logo">
+                <img src="{$web_logo}">
+            </div><!--top_logo结束-->
+            <div class="top_nav">
+                <ul>
+                    <nempty name="data">
+                        <loop name="data" value="item">
+                            <li><a href="{$U('Class/Index','id='+{$@item.id\})}"><img src="{$item.pic}"></a></li>
+                        </loop>
+                    </nempty>
+                </ul>
+            </div><!--top_nav结束-->
+        </div><!--center_div结束-->
+    </div><!--top结束-->
+    <div class="news">
+        <div class="center_div">
+            <img src="images/hot_news_01.gif" class="news_img ie6png">
+            <div class="news_qiehuan">
+                <div id="news_qiehuan_main">
+                    <ul style="display:block;">
+                        <li><a href="#">太阳系的行星们火星应该把火星是红色的原因改成氧化铁<span> 2014-02-08</span></a>
+                        </li> 
+                    </ul>
+                    <ul>
+                        <li><a href="#">太阳系的行星们火星应该把火星是红色的原因改</a></li> 
+                    </ul>
+                    <ul>
+                        <li><a href="#">2014-02-08sdfaggcv2014-02-08 </a></li> 
+                    </ul>
+                </div><!--news_qiehuan_main结束-->
+                <div  id="tab">
+                    <ul>
+                        <li class="current"></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div><!--news_qiehuan_bottom-->
+                <script src="js/news.js" type="text/javascript"></script>
+            </div><!--news_qiehuan结束-->
+        </div><!--center_div结束-->
+    </div><!--nws结束-->
+    <div class="banner">
+      <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="1306" height="565">
+        <param name="movie" value="banner.swf" />
+        <param name="quality" value="high" />
+        <param name="wmode" value="opaque" />
+        <param name="swfversion" value="15.0.0.0" />
+        <!-- 此 param 标签提示使用 Flash Player 6.0 r65 和更高版本的用户下载最新版本的 Flash Player。如果您不想让用户看到该提示，请将其删除。 -->
+        <param name="expressinstall" value="Scripts/expressInstall.swf" />
+        <!-- 下一个对象标签用于非 IE 浏览器。所以使用 IECC 将其从 IE 隐藏。 -->
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="banner.swf" width="1306" height="565">
+          <!--<![endif]-->
+          <param name="quality" value="high" />
+          <param name="wmode" value="opaque" />
+          <param name="swfversion" value="15.0.0.0" />
+          <param name="expressinstall" value="Scripts/expressInstall.swf" />
+          <!-- 浏览器将以下替代内容显示给使用 Flash Player 6.0 和更低版本的用户。 -->
+          <div>
+            <h4>此页面上的内容需要较新版本的 Adobe Flash Player。</h4>
+            <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="获取 Adobe Flash Player" /></a></p>
+        </div>
+        <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+</object>
+</div>
+<div class="content">
+    <div class="center_div">
+        <div class="bottom">
+            <a href="#hot_news"><img src="images/botton.jpg"></a>
+        </div><!--bottom结束-->
+        <div class="index_left">
+            <div id="qiehuan">
+                <div id="qiehuan_top">
+                    <ul>
+                        <li class="current"><img src="images/date_01.gif"></li>
+                        <li><img src="images/date_02.gif"></li>
+                        <li><img src="images/date_03.gif"></li>
+                    </ul>
+                </div><!--date_qiehuan_top结束-->
+                <div id="qiehuan_main">
+                    <ul style="display:block;">
+                        <li><a href="{$U('Article/Show')}"><img src="images/index_01.jpg"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="{$U('Article/Show')}"><img src="images/index_01.jpg"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="{$U('Article/Show')}"><img src="images/index_01.jpg"></a></li>
+                    </ul>
+                </div><!--qiehuan_main结束-->
+                <div class="qiehuan_footer">
+                    <a href="{$U('Class/AllIndex')}"><img src="images/more.jpg"></a>
+                </div><!--qiehuan_footer结束-->
+            </div><!--date_qiehuan结束-->
+            <div class="left_footer">
+                <ul>
+                    <li><img src="images/free.png"><h3><a href="{$U('Class/FreeIndex')}">免费专区</a></h3></li>
+                    <li><img src="images/vip.png"><h3><a href="{$U('Class/VipIndex')}">VIP专享</a></h3></li>
+                    <li><img src="images/study.png"><h3><a href="{$U('New/Show')}">学习要点</a></h3></li>
+                </ul>
+            </div><!--left_footer结束-->
+        </div><!--left结束-->
+        <div class="play_games">
+            <div class="play_games_img"><img src="images/play_game_bg.jpg" width="380" height="673" /></div><!--play_games_img-->
+            <a href="{$U('New/Show')}"><img src="images/play_game.jpg" width="308" height="77" class="thebtn ie6png" /></a>  
+        </div> <!--play_games结束-->
+    </div><!--center_div结束-->
+</div><!--content结束-->
+<div id="hot_news"> 
+    <div class="center_div">
+        <div class="hot_news_top"><img src="images/hot_news_02.png"></div><!--hot_news_top结束-->
+        <div id="hot_news_left">
+            <div class="hot_news_content">
+                <div class="hot_news_content_top ie6png"></div><!--hot_news_main_top结束-->
+                <div class="hot_news_content_main">
+                    <div id="hot_news_main">
+                        <nempty name="news">
+                            <loop name="news" value="value" key="key">
+                                <ul<eq name="key" value="0"> style="display:block;"</eq>>
+                                <li>
+                                    <div class="hot_news_img">
+                                        <img src="{$value.pic}" width="722" height="245" />
+                                    </div>
+                                    <!--hot_news_img结束-->
+                                    <div class="hot_news_txt">
+                                        <dl>
+                                            <dt>
+                                                <a href="{$U('Parent/NewShow','id='+{$@value.id\})}">{$value.title:F.string.left=60}</a>
+                                            </dt>
+                                            <dd>
+                                                {$value.content:removeHTMLTag=130}
+                                            </dd>
+                                        </dl>
+                                    </div><!--hot_news_txt结束-->
+                                </li>
+                            </ul>
+                        </loop>
+                    </nempty>
+                </div><!--hot_news_maint结束-->
+            </div><!--hot_news_content_main结束-->
+            <div class="hot_news_content_footer ie6png"></div><!--hot_news_content_footer结束-->
+        </div><!--hot_news_content结束-->
+    </div><!--hot_news_left结束-->
+    <div id="hot_news_right">
+        <ul>
+            <nempty name="news">
+                <loop name="news" value="value" key="key">
+                    <li<eq name="key" value="0"> class="current"</eq>>
+                    <table width="365" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th scope="row" class="hot_news_right_img">
+                                <a href="{$U('Parent/NewShow','id='+{$@value.id\})}"><img src="{$value.pic}" ></a>
+                            </th>
+                            <td valign="top">
+                                <h4><a href="{$U('Parent/NewShow','id='+{$@value.id\})}">{$value.title:F.string.left=13}</a></h4>
+                                <h5>{$value.content:removeHTMLTag=20}</h5>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </loop>
+        </nempty>
+    </ul>
+    <script type="text/javascript" src="js/news.js"></script>
+</div><!--hot_news_left结束-->
+</div><!--center_div结束-->
+</div><!--hot_news结束-->
+<div id="footer">
+    <div class="center_div">
+      <div class="footer_div">
+        <div class="d1">
+            <dl>
+                <dt><img src="images/about_us.png" width="156" height="33"></dt>
+                <dd>
+                    <nempty name="about">
+                        <a href="{$U('User/About')}">{$about:F.string.left=60}...</a>
+                    </nempty>
+                </dd>
+            </dl>
+            <p><a href="{$U('User/About')}"><img src="images/more_01.png" width="120" height="24" class="ie6png"></a></p>
+        </div>
+        <div class="d1">
+            <dl>
+                <dt><img src="images/news_center.png"></dt>
+                <nempty name="news">
+                    <loop name="news" value="value" key="key">
+                        <ngt name="key" value="2">
+                            <dd><a href="{$U('Parent/NewShow','id='+{$@value.id\})}">{$value.title:F.string.left=13}  <span style="float:right;">{$value.exptime:F.untimespan="yyyy/MM/dd"}</span></a></dd>
+                        </ngt>
+                    </loop>
+                </nempty>
+            </dl>
+            <p><a href="{$U('Parent/New')}"><img src="images/more_02.png" width="120" height="24" class="ie6png"></a></p>
+        </div>
+        <div class="d1">
+            <dl>
+                <dt><img src="images/about_us.png" width="156" height="33"></dt>
+                <nempty name="parent">
+                    <loop name="parent" value="value">
+                        <dd><a href="{$U('Parent/IndexShow','id='+{$@value.id\})}">{$value.title:F.string.left=13}  <span style="float:right;">{$value.exptime:F.untimespan="yyyy/MM/dd"}</span></a></dd>
+                    </loop>
+                </nempty>
+            </dl>
+            <p><a href="{$U('Parent/List')}"><img src="images/more_03.png" width="120" height="24" class="ie6png"></a></p>
+        </div>
+        <div class="d1">
+            <dl>
+                <dt><img src="images/bullletin.png"></dt>
+                <nempty name="notice">
+                    <loop name="notice" value="value">
+                        <dd><a href="{$U('Parent/NoticeShow','id='+{$@value.id\})}">{$value.title:F.string.left=13}  <span style="float:right;">{$value.exptime:F.untimespan="yyyy/MM/dd"}</span></a></dd>
+                    </loop>
+                </nempty>
+            </dl>
+            <p><a href="{$U('Parent/Notice')}"><img src="images/more_04.png" width="120" height="24" class="ie6png"></a></p>
+        </div>
+    </div><!--footer_bottom结束-->
+    <div class="hx">
+    </div><!--hx-->
+    <div class="footer_bottom">
+        <table width="1172" border="0" cellpadding="0" cellspacing="0" style="table-layout: fixed;word-wrap:break-word;">
+          <tr>
+            <th width="124" rowspan="3" align="center" scope="row"><img src="images/footer_logo.png"></th>
+            <td width="794" height="38" valign="bottom">
+                <div class="cjx">
+                    <ul>
+                        <li><a href="#">腾讯儿童</a></li>
+                        <li>|</li>
+                        <li><a href="#">中国时刻网</a></li>
+                        <li>|</li>
+                        <li><a href="#">手机版</a>  </li>
+                        <li>|</li>
+                        <li><a href="#">学习要点 </a></li>
+                        <li>|</li>
+                        <li><a href="#">服务条款 </a></li>
+                        <li>|</li>
+                        <li><a href="#">热门标签</a> </li>
+                        <li>|</li>
+                        <li><a href="#">常见问题</a> </li>
+                        <li>|</li>
+                        <li><a href="#">体验随记 </a></li>
+                        <li>|</li>
+                        <li><a href="#">意见反馈</a>   </li>
+                    </ul>
+                </div><!--cjx结束-->
+            </td>
+            <td width="254" rowspan="3">
+                <div class="friend_link">
+                  <select name="selectfield" class="selectfield">
+                    <option>--友情链接--</option>
+                </select>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td height="28">版权所有Copyright &#169; {$copyright}</td>
+    </tr>
+    <tr>
+        <td height="30"><p style="word-wrap:break-word;">{$buinformation:F.decodeHtml}</p></td>
+    </tr>
+    <tr>
+        <td height="26" valign="top"><nempty name="record"><a href="http://www.miitbeian.gov.cn/">{$record}</a></nempty></td>
+    </tr>
+</table>
+
+</div><!--footer_bottom结束-->
+</div><!--center_div-->
+</div><!--footer结束-->
+<script type="text/javascript">
+    swfobject.registerObject("FlashID");
+</script>
+</body>
+</html>

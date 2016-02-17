@@ -1,0 +1,106 @@
+<extend file="../layout/layout.html" />
+<selection name="title">栏目管理</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							栏目管理
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation" class="active">
+									<a href="{$U('Class/Index')}" class="btn btn-link btn-block">全部栏目</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('Class/Create')}" class="btn btn-link btn-block">添加栏目</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li class="active">栏目列表</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<css file="css/List.css" />
+						<form action="{$U('Class/Did')}" method="post">
+							<input type="hidden" name="__csrf" value="{$__csrf}">
+							<div class="btn-group" role="group">
+								<div class="btn btn-default">
+									<div class="has-info">
+										<div class="checkbox" style="margin-top: 0px; margin-bottom: 0px;">
+											<label>
+												<input type="checkbox" value="1" onclick="mm(this)"> 选择
+											</label>
+										</div>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-success">更新排序</button>
+							</div>
+							<div class="tree">
+								{$list}
+							</div>
+							<div class="btn-group" role="group">
+								<div class="btn btn-default">
+									<div class="has-info">
+										<div class="checkbox" style="margin-top: 0px; margin-bottom: 0px;">
+											<label>
+												<input type="checkbox" value="1" onclick="mm(this)"> 选择
+											</label>
+										</div>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-success">更新排序</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+	<div class="Cdelete"></div>
+	<script type="text/javascript">
+		function Cdelete(id,rid,cid){
+			var str='<div class="modal fade" id="myModal'+id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe'+id+'">' + '<div class="modal-dialog" role="document">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' + '<h4 class="modal-title" id="exampleModalLabe'+id+'">提示信息</h4>' + '</div>' + '<form action="{$U('Class/Del')}" method="post">' + '<input type="hidden" name="__csrf" value="{$__csrf}">' + '<div class="modal-body">' + '<input type="hidden"name="cid" value="'+cid+'">' + '<input type="hidden"name="rid" value="'+rid+'">' + '<div class="alert alert-danger" role="alert">删除该栏目下属栏目也会被清空，确认继续？？</div>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">关闭窗口</button>' + '<button type="submit" class="btn btn-danger btn-sm">确认删除</button>' + '</div>' + '</form>' + '</div>' + '</div>' + '</div>';
+			$('.Cdelete').html(str);
+		}
+		function mm(o) {
+			var a = document.getElementsByName("did");
+			for (var i=0;i<a.length;i++){
+				a[i].checked = o.checked;
+			}
+		}
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$('.tree li:has(ol)').addClass('parent_li').find(' > span').attr('title', '合并栏目');
+			$('.tree li.parent_li > span').on('click', function (e) {
+				var children = $(this).parent('li.parent_li').find(' > ol > li');
+				if (children.is(":visible")) {
+					children.hide('fast');
+					$(this).attr('title', '展开栏目').find(' > i').addClass('glyphicon-minus-sign').removeClass('glyphicon-plus-sign');
+				} else {
+					children.show('fast');
+					$(this).attr('title', '合并栏目').find(' > i').addClass('glyphicon-plus-sign').removeClass('glyphicon-minus-sign');
+				}
+				e.stopPropagation();
+			});
+		});
+	</script>
+
+</selection>

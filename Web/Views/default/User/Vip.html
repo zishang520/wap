@@ -1,0 +1,187 @@
+<!doctype html >
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="_token" content="{$__csrf}" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <title>{$web_title}-会员中心-{$web_name}</title>
+  <js file="js/jquery-2.1.0.js" />
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/sub.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <js file="js/bootstrap.min.js" />
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('.ie6png');
+</script>
+<![endif]-->
+
+</head>
+
+<body>
+  <div class="juti_content">
+   <div class="juti_content_top"></div><!--juti_content_top结束-->
+   <div class="juti_content_main">
+     <div class="left">
+       <div class="left_logo">
+        <img src="images/left_inner_vip.gif">
+      </div><!--left_logo结束-->
+      <div class="left_top1">
+        <ul>
+          <li><a href="{$U('User/Vip')}">开通会员</a></li>
+          <li><a href="{$U('User/Buy')}">付费记录</a></li>
+          <li><a href="{$U('User/Index')}">我的资料</a></li>
+          <li><a href="{$U('User/Server')}">服务条款</a></li>
+          <li><a href="{$U('User/About')}">关于我们</a></li>
+          <!-- <li><a href="#">积分</a></li> -->
+        </ul>
+      </div><!--left_top结束-->
+      <div class="left_img">
+        <ul>
+          <!-- <li><a href="#"><img src="images/free_experience.png"></a></li> -->
+          <li><a href="{$U('Msg/Index')}"><img src="images/opinion_feedback.png"></a></li>
+        </ul>
+      </div><!--juti_content_left_img结束-->
+    </div><!--left结束-->
+    <div class="right">
+     <div class="right_top">
+       <div class="right_logo1">
+         <img src="images/right_inner_vip.gif">
+       </div><!--right_logo结束-->
+
+       <div class="now_position1">
+        您当前所在的位置：<a href="{$U('Home/Index')}">首页</a> 》<a href="{$U('User/Index')}">会员中心</a> 》<a href="{$U('User/Vip')}">充值会员</a>
+      </div><!--now_position结束-->
+    </div><!--right_top结束-->
+    <div class="right_main">
+     <div id="right_main_tilte">
+       <ul>
+         <li><img src="images/inner_vip_tilte_o1.gif"></li>
+         <li><img src="images/inner_vip_tilte_o2.gif"></li>
+         <li><img src="images/inner_vip_tilte_o3.gif"></li>
+       </ul>
+     </div><!--right_main_tilte结束-->
+     <div class="clear"></div>
+     <div class="right_main_user">
+       <table width="670" height="115" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td align="left" scope="row">
+            <div class="uesr_informatiom">
+              <nempty name="data">
+                <loop name="data" value="item">
+                 <div class="user_prc"><img src="images/user_prc.jpg"></div>
+                 <div class="informatiom">
+                   欢迎您：<span class="key_word"><nempty name="item.fullname">{$item.fullname}</else>{$item.username}</nempty></span><br />
+                   <eq name="item.isvip" value="1">你的VIP将在：<span class="key_word">{$item.vipexpire:F.untimespan}</span>过期</else>你尚未开通VIP</eq>
+                 </div><!--informatiom结束-->
+               </loop>
+             </nempty>
+           </div><!--uesr_informatiom-->
+           <div class="xftc">
+             <h3>续费套餐<br /></h3>
+             <span>续费只能对正在使用的套餐进行有限期限的延长</span>
+           </div><!--xufei结束-->
+         </td>
+       </tr>
+     </table>
+   </div><!--right_main_user结束-->
+   <nempty name="error">
+     <div class="alert alert-warning alert-dismissible fade in" role="alert" style="width: 669px; margin: auto;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+      <strong>出现错误：</strong>{$error}
+    </div>
+  </nempty>
+  <div class="xf_contnet">
+   <form id="defaultForm" name="defaultForm" action="{$U('User/Vip')}" method="post" name="edit" novalidate="novalidate" class="form-horizontal">
+    <input type="hidden" name="__csrf" value="{$__csrf}">
+    <table width="670" height="354" border="0" cellpadding="0" cellspacing="0" style=" font-weight:n">
+      <tr>
+        <nempty name="data">
+          <loop name="data" value="item">
+            <td width="94" height="45" align="center" >账号确定</td>
+            <td width="560">&nbsp;{$item.username}(唯一ID：{$item.id})</td>
+          </loop>
+        </nempty>
+      </tr>
+      <tr>
+        <td height="130" align="center" >开通类型</td>
+        <td>
+         <div class="taochan">
+           <ul>
+             <li><input type="radio" value="1" id= "1" name="buy" style="display:none"> <img id="aa" class="img" src="images/taochan_01.jpg" onclick="myFun(this.id)"></li>
+             <li><input type="radio" value="2" id= "2" name="buy" style="display:none"> <img id="bb" class="img" src="images/taochan_02.jpg" onclick="myFun(this.id)"></li>
+             <li><input type="radio" value="3" id= "3" name="buy" style="display:none"> <img id="cc" class="img" src="images/taochan_03.jpg" onclick="myFun(this.id)"></li>
+             <li><input type="radio" value="4" id= "4" name="buy" style="display:none"> <img id="dd" class="img" src="images/taochan_04.jpg" onclick="myFun(this.id)"></li>
+           </ul>
+         </div><!--taochan结束-->
+       </td>
+     </tr>
+     <tr>
+      <td height="45" align="center" >付款金额</td>
+      <td valign="top">&nbsp;<div class="price">0元</div></td>
+    </tr>
+    <tr>
+      <td height="150" colspan="2" align="center" valign="middle" scope="row">
+        <p>
+          <p><a onclick="CheckForm()" class="btn btn-link"><img src="images/inner_vip_botton.gif"></a></p></td>
+        </tr>
+      </table>
+    </form>
+  </div><!--xf_contnet-->
+</div><!--right_main结束-->
+</div><!--right结束-->
+</div><!--juti_content_main结束-->
+<div class="juti_content_footer"></div><!--juti_content_footer结束-->
+</div><!--juti_content结束-->
+<script type="text/javascript">
+  function myFun(sId) {
+    var oImg = $('.img');
+    var o;
+    for (var i = 0; i < oImg.length; i++) {
+      switch(i) {
+        case 0:
+        o=0;
+        break;
+        case 1:
+        o=16;
+        break;
+        case 2:
+        o=60;
+        break;
+        case 3:
+        o=140;
+        break;
+      }
+      if (oImg[i].id == sId) {
+        oImg[i].previousSibling.previousSibling.checked = true;
+        oImg[i].style.cssText="border-color:#ccc;border-color:rgba(82,168,236,0.8);outline:0;outline:thin dotted\\9;-webkit-box-shadow:0 0 8px rgba(82,168,236,0.6);box-shadow:0 0 8px rgba(82,168,236,0.6);";
+        if (i>0) {
+          var n=(Math.pow(i,2)+2)*28;
+          $('.price').html((n-o)+"元<span>（原价"+n+"元，现价"+(n-o)+"元.比按月买省"+o+"元）</span>");
+        }else{
+          $('.price').html("28元<span>（原价28元，现价28元.比按月买省0元）</span>");
+        }
+      } else {
+        oImg[i].style.cssText = '';
+      }
+    }
+  }
+
+  function CheckForm()
+  { 
+    var form=document.defaultForm;
+    if (form.buy.value=='') {
+      alert("请选择需要开通的类型!");
+      return false;
+    }
+    form.submit();
+    return true;
+  }
+</script>
+</body>
+</html>

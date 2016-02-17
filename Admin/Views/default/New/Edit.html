@@ -1,0 +1,96 @@
+<extend file="../layout/layout.html" />
+<selection name="title">新闻管理</selection>
+<selection name="header"></selection>
+<selection name="body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="panel-group" role="tablist">
+          <div class="panel panel-default">
+            <a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+              内容管理
+            </a>
+            <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+              <ul class="nav nav-pills nav-stacked">
+                <li role="presentation">
+                  <a href="{$U('New/Index')}" class="btn btn-link btn-block">全部内容</a>
+                </li>
+                <li role="presentation">
+                  <a href="{$U('New/Create')}" class="btn btn-link btn-block">添加内容</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="panel panel-default">
+          <ol class="breadcrumb">
+            <li><a href="{$U('New/Index')}">新闻列表</a></li>
+            <li class="active">新闻编辑</li>
+          </ol>
+          <div class="panel-body">
+            <nempty name="error">
+              <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <strong>出现错误：</strong>{$error}
+              </div>
+            </nempty>
+            <nempty name="data">
+              <loop name="data" value="item">
+                <form class="form-horizontal" action="{$U('New/Update')}" method="post">
+                  <input type="hidden" name="__csrf" value="{$__csrf}">
+                  <input type="hidden" name="id" value="{$item.id}">
+                  <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-10">
+                      <input name="title" type="text" class="form-control" id="title" placeholder="内容标题" value="{$item.title}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="pic" class="col-sm-2 control-label">缩略图</label>
+                    <div class="col-sm-3">
+                      <input name="pic" type="text" class="form-control" id="pic" placeholder="缩略图" value="{$item.pic}">
+                    </div>
+                    <include file="../Upload/Thumb.html" />
+                  </div>
+                  <div class="form-group">
+                    <label for="inputDes3" class="col-sm-2 control-label">内容描述</label>
+                    <div class="col-sm-10">
+                      <textarea name="des" type="text" class="form-control" rows="2" id="inputDes3" placeholder="新闻描述内容">{$item.des:F.decodeHtml}</textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">内容</label>
+                    <div class="col-sm-10">
+                      <script id="container" name="content" type="text/plain">{$item.content:F.decodeHtml}</script>
+                      <js src="ueditor/ueditor.config.js" />
+                      <js src="ueditor/ueditor.all.min.js" />
+                      <js src="ueditor/lang/zh-cn/zh-cn.js" />
+                      <script type="text/javascript">
+                        var ue = UE.getEditor('container');
+                      </script>
+                    </div>
+                  </div>
+                  <div class="form-group has-success">
+                    <label for="inputIsdisplay3" class="col-sm-2 control-label">显示内容</label>
+                    <div class="col-sm-10 form-control-static">
+                     <input type="checkbox" name="isdisplay" value="1" data-toggle="toggle" data-size="mini" data-on="是" data-off="否" data-onstyle="success" data-offstyle="danger" <eq name="item.isdisplay" value="1">checked="checkend"</eq>> 是否显示
+                   </div>
+                 </div>
+                 <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">发布内容</button>
+                  </div>
+                </div>
+              </form>
+            </loop>
+          </nempty>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</selection>
+<selection name="foot">
+</selection>

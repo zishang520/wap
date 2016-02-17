@@ -1,0 +1,85 @@
+<extend file="../layout/layout.html" />
+<selection name="title">邮件设置</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							系统设置
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation">
+									<a href="{$U('SysWeb/Webinfo')}" class="btn btn-link btn-block">网站信息</a>
+								</li>
+								<li role="presentation" class="active">
+									<a href="{$U('SysWeb/Email')}" class="btn btn-link btn-block">邮箱设置</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('SysWeb/EmailTemplate','id=1')}" class="btn btn-link btn-block">邮箱模板</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('SysWeb/SmsTemplate')}" class="btn btn-link btn-block">短信模板</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li class="active">邮箱设置</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<loop name="data" value="item">
+							<form action="{$U('SysWeb/Email')}" method="post" class="form-horizontal">
+								<input type="hidden" name="__csrf" value="{$__csrf}">
+								<div class="form-group">
+									<label for="inputSmtp3" class="col-sm-2 control-label">SMTP地址</label>
+									<div class="col-sm-10">
+										<input name="smtp" type="text" class="form-control" id="inputSmtp3" placeholder="邮件SMTP服务器地址" value="{$item.smtp}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+									<div class="col-sm-10">
+										<input name="email" type="email" class="form-control" id="inputEmail3" placeholder="邮箱用户名" value="{$item.email}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-2 control-label">用户密码</label>
+									<div class="col-sm-10">
+										<input name="password" type="password" class="form-control" id="inputPassword3" placeholder="邮箱密码" value="{$item.password}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">服务器状态</label>
+									<div class="col-sm-10 form-control-static">
+										<input type="checkbox" name="isopen" value="1" data-toggle="toggle" data-size="mini" data-on="开启" data-off="关闭" <eq name="item.isopen" value="1">checked="checkend"</eq> data-onstyle="success" data-offstyle="danger">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-info">更新信息</button>
+									</div>
+								</div>
+							</form>
+						</loop>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+</selection>

@@ -1,0 +1,73 @@
+<extend file="../layout/layout.html" />
+<selection name="title">子模板的，标题</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+							<h4 class="panel-title">
+								<a class="" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+									Collapsible list group
+								</a>
+							</h4>
+						</div>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="list-group">
+								<li class="list-group-item">Bootply</li>
+								<li class="list-group-item">One itmus ac facilin</li>
+								<li class="list-group-item">Second eros</li>
+							</ul>
+							<div class="panel-footer">Footer</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">栏目列表</div>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<css file="Public/css/List.css" />
+						<div class="tree well">
+							{$list}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+	<div class="Cdelete"></div>
+	<script type="text/javascript">
+		function Cdelete(id,rid,cid){
+			var str='<div class="modal fade" id="myModal'+id+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabe'+id+'">' + '<div class="modal-dialog" role="document">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' + '<h4 class="modal-title" id="exampleModalLabe'+id+'">提示信息</h4>' + '</div>' + '<form action="{$U('Class/Del')}" method="post">' + '<input type="hidden" name="__csrf" value="{$__csrf}">' + '<div class="modal-body">' + '<input type="hidden"name="id" value="'+id+'">' + '<input type="hidden"name="cid" value="'+cid+'">' + '<input type="hidden"name="rid" value="'+rid+'">' + '<div class="alert alert-danger" role="alert">删除该栏目下属栏目也会被清空，确认继续？？</div>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">关闭窗口</button>' + '<button type="submit" class="btn btn-danger btn-sm">确认删除</button>' + '</div>' + '</form>' + '</div>' + '</div>' + '</div>';
+			$('.Cdelete').html(str);
+		}
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '合并栏目');
+			$('.tree li.parent_li > span').on('click', function (e) {
+				var children = $(this).parent('li.parent_li').find(' > ul > li');
+				if (children.is(":visible")) {
+					children.hide('fast');
+					$(this).attr('title', '展开栏目').find(' > i').addClass('glyphicon-minus-sign').removeClass('glyphicon-plus-sign');
+				} else {
+					children.show('fast');
+					$(this).attr('title', '合并栏目').find(' > i').addClass('glyphicon-plus-sign').removeClass('glyphicon-minus-sign');
+				}
+				e.stopPropagation();
+			});
+		});
+	</script>
+
+</selection>

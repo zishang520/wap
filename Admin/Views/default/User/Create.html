@@ -1,0 +1,142 @@
+<extend file="../layout/layout.html" />
+<selection name="title">会员管理</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							用户管理
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation">
+									<a href="{$U('User/Index')}" class="btn btn-link btn-block">全部用户</a>
+								</li>
+								<li role="presentation" class="active">
+									<a href="{$U('User/Create')}" class="btn btn-link btn-block">添加用户</a>
+								</li>
+								<li role="presentation">
+									<a href="{$U('User/VipLog')}" class="btn btn-link btn-block">充值记录</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li><a href="{$U('User/Index')}">会员列表</a></li>
+						<li class="active">添加用户</li>
+					</ol>
+					<div class="panel-body">
+						<nempty name="error">
+							<div class="alert alert-warning alert-dismissible fade in" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								<strong>出现错误：</strong>{$error}
+							</div>
+						</nempty>
+						<form action="{$U('User/Stroe')}" method="post" class="form-horizontal">
+							<input type="hidden" name="__csrf" value="{$__csrf}">
+							<input type="hidden" name="id" value="">
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="username">用户昵称</label>
+								<div class="col-sm-6">
+									<input name="username" type="text" class="form-control" id="username" value="" placeholder="用户昵称">
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="password">用户密码</label>
+								<div class="col-sm-6">
+									<input name="password" type="text" class="form-control" id="password" value="" placeholder="用户密码">
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="vipexpire">VIP到期日期</label>
+								<div class="input-group date form_date col-sm-6" data-date="" data-date-format="yyyy-mm-dd hh:ii:ss" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd hh:ii:ss" style="padding-left: 15px; padding-right: 15px;">
+									<input name="vipexpire" class="form-control" type="text" value="" readonly="readonly" placeholder="vip到期日期">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="isvip">是否VIP</label>
+								<div class="col-sm-6 form-control-static">
+									<input name="isvip" type="checkbox" id="isvip" value="1" data-toggle="toggle" data-size="mini" data-on="是" data-off="否" data-onstyle="success" data-offstyle="danger">
+									是否VIP
+								</div>
+							</div>
+							<div class="form-group has-warning">
+								<label class="col-sm-2 control-label" for="question">安全问题</label>
+								<div class="col-sm-6">
+									<input name="question" type="text" class="form-control" id="question" value="" placeholder="留空则不设置">
+								</div>
+							</div>
+							<div class="form-group has-warning">
+								<label class="col-sm-2 control-label" for="anser">问题答案</label>
+								<div class="col-sm-6">
+									<input name="anser" type="text" class="form-control" id="anser" placeholder="留空则不设置">
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="email">邮箱地址</label>
+								<div class="col-sm-6">
+									<input name="email" type="email" class="form-control" id="email" value="" placeholder="邮箱地址">
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="isemail">邮箱状态</label>
+								<div class="col-sm-6 form-control-static">
+									<input name="isemail" type="checkbox" id="isemail" value="1" data-toggle="toggle" data-size="mini" data-on="已认证" data-off="未认证" data-onstyle="success" data-offstyle="danger">
+									是否认证
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="mobile">手机号码</label>
+								<div class="col-sm-6">
+									<input name="mobile" type="tel" class="form-control" id="mobile" value="" placeholder="手机号码">
+								</div>
+							</div>
+							<div class="form-group has-success">
+								<label class="col-sm-2 control-label" for="ismobile">手机状态</label>
+								<div class="col-sm-6 form-control-static">
+									<input name="ismobile" type="checkbox" id="ismobile" value="1" data-toggle="toggle" data-size="mini" data-on="已认证" data-off="未认证" data-onstyle="success" data-offstyle="danger">
+									是否认证
+								</div>
+							</div>
+							<div class="form-group has-error">
+								<label class="col-sm-2 control-label" for="islogin">登陆状态</label>
+								<div class="col-sm-6 form-control-static">
+									<input name="islogin" type="checkbox" id="islogin" value="1" data-toggle="toggle" data-size="mini" data-on="已禁止" data-off="未禁止" data-onstyle="success" data-offstyle="danger">
+									是否禁用此用户
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-info">更新信息</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+	<script type="text/javascript">
+		$('.form_date').datetimepicker({
+			language:  'zh-CN',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+	</script>
+</selection>

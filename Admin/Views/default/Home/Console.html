@@ -1,0 +1,139 @@
+﻿<extend file="../layout/layout.html" />
+<selection name="title">DUBUG控制台</selection>
+<selection name="header">
+	<script type="text/javascript">
+		var box = null, 
+		colors = {E_ERROR : 'red',E_NOTICE : 'orange',E_WARNING : 'blue',E_INFO : 'green',E_MODEL : "green"}, bgcolor = ["#fff","#fafafa"],color = 0,timer = 0,max = 50,
+		getXMLHttpRequest=function(){var a=null;if(window.XMLHttpRequest){a=new XMLHttpRequest();getXMLHttpRequest=function(){return new XMLHttpRequest()}}else{if(window.ActiveXObject){var e=["MSXML2.XMLHttp.3.0","MSXML2.XMLHttp","Microsoft.XMLHttp","MSXML2.XMLHttp.5.0","MSXML2.XMLHttp.4.0"];for(var d=e.length-1;d>=0;d--){try{getXMLHttpRequest=(function(b){return function(){return new ActiveXObject(b)}})(e[d]);a=getXMLHttpRequest()}catch(c){}}}}return a}, 
+		Ajax = function(c,d,b){var a=getXMLHttpRequest();if(a==null){if(typeof b=="function"){b("XMLHttpRequest组件初始化失败")}return}d=d||function(){};b=b||function(){};a.open("GET",c,true);a.onreadystatechange=(function(e){return function(){if(e.readyState==4){if(e.status==200){try{d.call(e,(new Function("return "+e.responseText+";"))())}catch(ex){d.call(e,null)}}else{b.call(e,e.status,e.responseText)}}}})(a);a.send();a=null},
+		format = function(b){var a=arguments;if(a.length<=1){return b}return b.replace(/\{(\d+)(\.([\w\.]+))?\}/igm,function(e){try{var d=/\{(\d+)(\.([\w\.]+))\}/igm.exec(e);if(d!=null){return(new Function("return this["+(parseInt(d[1])+1)+']["'+d[3].replace(/\./igm,'"]["').replace(/\[\"(\d+)\"\]/igm,"[$1]")+'"]')).call(a)}return a[parseInt(e.replace(/\{(\d+)\}/igm,"$1"))+1]}catch(c){return e}})};
+
+		function start(){
+			Ajax(
+				"?m=Home&a=ConsoleShow&_r=" + Math.random(),
+				function(msg){
+					var child = box.firstChild;
+					if(msg){
+						var len = msg.length;
+						if(len>0){
+							createheader(new Date(),child);
+						}
+						for(var i=0;i<len;i++){
+							create(msg[i], child);
+						}
+						while(box.childNodes.length>max) box.removeChild(box.lastChild);
+					}else{
+						createheader(new Date(), child);
+						createerror("DEBUG数据异常：" + this.responseText, child);
+					}
+					timer = window.setTimeout(start, 3000)
+				},
+				function(status, text){
+					var child = box.firstChild;
+					createheader(new Date(), child);
+					createerror("服务器错误：" + status, child);
+					timer = window.setTimeout(start, 3000)
+				}
+				);
+		}
+		function createheader(msg, last){
+			var list = document.createElement("tr");
+			list.innerHTML = "<td colspan=\"8\">"+msg+"</td>";
+			list.style.cssText = "color:#999;background-color:#f3f3f3;";
+			if(box.firstChild && last)box.insertBefore(list, last);
+			else box.appendChild(list);
+		}
+		function create(msg, last){
+			var list = document.createElement("tr");
+			list.innerHTML = format("<td>{0.datetime}</td><td>0x{0.number}</td><td>{0.method}.{0.action}</td><td>{0.source}</td><td style=\"color:" + colors[msg.level] + ";text-align:left\">{0.message}</td><td>{0.level}</td><td>{0.filename}</td><td>{0.linenumber}</td>",msg);
+			list.style.cssText = "color:#666;background-color:" + bgcolor[color];
+			if(box.firstChild && last)box.insertBefore(list, last);
+			else box.appendChild(list);
+		}
+		function createerror(msg, last){
+			var list = document.createElement("tr");
+			list.innerHTML = "<td colspan=\"8\">"+msg+"</td>";
+			list.style.cssText = "color:red;";
+			if(box.firstChild)box.insertBefore(list, last);
+			else box.appendChild(list);
+		}
+		function Ctrl(ipt){
+			if(timer>0){
+				ipt.innerHTML = "启动";
+				window.clearTimeout(timer)
+				timer = 0;
+			}else{
+				var ml = document.getElementById("maxlines");
+				if(!isNaN(ml.value)) max = parseInt(ml.value);
+				ipt.innerHTML = "停止";
+				start();
+			}
+		}
+		function Clear(){
+			while(box.lastChild) box.removeChild(box.lastChild);
+		}
+		window.onload = function(){
+			box = document.getElementById("logs");
+		};
+	</script>
+</selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<a class="panel-heading btn btn-default btn-block" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+							仪表盘
+						</a>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="nav nav-pills nav-stacked">
+								<li role="presentation">
+									<a href="{$U('Home/IpLog')}" class="btn btn-link btn-block">来访统计</a>
+								</li>
+								<li role="presentation" class="active">
+									<a href="{$U('Home/Console')}" class="btn btn-link btn-block">DEBUG控制</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<ol class="breadcrumb">
+						<li class="active">ExceptionManager控制台</li>
+					</ol>
+					<div class="panel-body">
+						<div class="form-inline">
+							<div class="form-group">
+								<label for="exampleInputName2">最大显示记录数：</label>
+								<input type="text" class="form-control input-sm" id="maxlines" placeholder="最大显示记录数" value="50">
+							</div>
+							<a href="javascript:void(0)" onclick="Ctrl(this);" class="btn btn-info btn-xs">启动</a> <a href="javascript:void(0)" onclick="Clear();" class="btn btn-warning btn-xs">清理</a>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-striped table-hover table-condensed">
+								<thead>
+									<tr>
+										<th>时间</th>
+										<th>异常代码</th>
+										<th>控制器/方法</th>
+										<th>来源</th>
+										<th>信息</th>
+										<th>级别</th>
+										<th>文件</th>
+										<th>行号</th>
+									</tr>
+								</thead>
+								<tbody id="logs">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</selection>
+	<selection name="foot">
+	</selection>

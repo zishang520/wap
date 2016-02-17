@@ -1,0 +1,147 @@
+<extend file="../layout/layout.html" />
+<selection name="title">会员管理</selection>
+<selection name="header">
+	<div class="mui-off-canvas-wrap mui-draggable" style="  height: 44px;">
+		<div class="mui-inner-wrap">
+			<header class="mui-bar mui-bar-nav">
+				<button class="mui-btn mui-btn-link mui-btn-nav mui-pull-left">
+					<span class="mui-icon mui-icon-left-nav"></span>
+					Left
+				</button>
+				<a href="#offCanvas" class="mui-icon mui-icon-bars mui-pull-right"></a>
+				<h1 class="mui-title">Container with slide menu(right)</h1>
+			</header>
+			<aside id="offCanvas" class="mui-off-canvas-right">
+				<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							Item 1
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							Item 2
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							Item 3
+						</a>
+					</li>
+				</ul>
+			</aside>
+		</div>
+	</div>
+</selection>
+<selection name="body">
+	<script type="text/javascript" src="WapPublic/js/modernizr.custom.js"></script>
+	<script type="text/javascript" src="WapPublic/js/jquery.dlmenu.js"></script>
+	<link href="WapPublic/css/component.css" rel="stylesheet" type="text/css">
+	<div class="mui-content">
+		<div id="dl-menu" class="dl-menuwrapper">
+			<button id="dl-menu-button" class="btn btn-primary">Open Menu</button>
+			<ul class="dl-menu">
+				<loop name='data' as='item'>
+					<li><a href="{$item.id}">{$item.classname}</a></li>
+				</loop>
+				<li>
+					<a href="#Line">自由行</a>
+					<ul class="dl-submenu">
+						<li class="dl-back"><a href="#back">返回上级</a></li>
+						<li><a href="http://www.17sucai.com/">线路</a></li>
+						<li><a href="http://www.17sucai.com/">签证</a></li>
+						<li><a href="http://www.17sucai.com/">门票</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="mui-content-padded">
+			<ul class="mui-pagination mui-pagination-sm">
+				<li class="mui-previous">
+					<a href="#">
+						&laquo;
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						1
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						2
+					</a>
+				</li>
+				<li class="mui-active">
+					<a href="#">
+						3
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						4
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						5
+					</a>
+				</li>
+				<li class="mui-next">
+					<a href="#">
+						&raquo;
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4">.col-md-4</div>
+				<div class="col-md-4">.col-md-4</div>
+				<div class="col-md-4">.col-md-4</div>
+				<div class="row">
+					<ul class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="http://dcloudio.github.io/mui/assets/img/shuijiao.jpg">
+								<div class="mui-media-body">幸福就是可以一起睡觉</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="http://dcloudio.github.io/mui/assets/img/muwu.jpg">
+								<div class="mui-media-body">想要一间这样的木屋，静静的喝咖啡</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="http://dcloudio.github.io/mui/assets/img/cbd.jpg">
+								<div class="mui-media-body">Color of SIP CBD</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="http://dcloudio.github.io/mui/assets/img/yuantiao.jpg">
+								<div class="mui-media-body">静静看这世界</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			$( '#dl-menu' ).dlmenu();
+		});
+	</script>
+</selection>
+<selection name="foot">
+	<div class="Del"></div>
+	<script type="text/javascript">
+		function Del(id){
+			var str='<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">' + '<div class="modal-dialog" role="document">' + '<div class="modal-content">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>' + '<h4 class="modal-title" id="exampleModalLabel">提示信息</h4>' + '</div>' + '<form action="{$U('Index/Del')}" method="post">' + '<input type="hidden" name="__csrf" value="{$__csrf}">' + '<div class="modal-body">' + '<input type="hidden"name="id" value="'+id+'">' + '<div class="alert alert-danger" role="alert">删除该用户信息且不可恢复，确认继续？？</div>' + '</div>' + '<div class="modal-footer">' + '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">关闭窗口</button>' + '<button type="submit" class="btn btn-danger btn-sm">确认删除</button>' + '</div>' + '</form>' + '</div>' + '</div>' + '</div>';
+			$('.Del').html(str);
+		}
+	</script>
+</selection>

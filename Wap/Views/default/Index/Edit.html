@@ -1,0 +1,134 @@
+<extend file="../layout/layout.html" />
+<selection name="title">子模板的，标题</selection>
+<selection name="header"></selection>
+<selection name="body">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel-group" role="tablist">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+							<h4 class="panel-title">
+								<a class="" role="button" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="true" aria-controls="collapseListGroup1">
+									Collapsible list group
+								</a>
+							</h4>
+						</div>
+						<div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+							<ul class="list-group">
+								<li class="list-group-item">Bootply</li>
+								<li class="list-group-item">One itmus ac facilin</li>
+								<li class="list-group-item">Second eros</li>
+							</ul>
+							<div class="panel-footer">Footer</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">信息编辑</div>
+					<div class="panel-body">
+						<loop name="data" as="item">
+							<form action="{$U('Index/Update')}" method="post" class="form-horizontal">
+								<input type="hidden" name="__csrf" value="{$__csrf}">
+								<input type="hidden" name="id" value="{$item.id}">
+								<div class="form-group has-success">
+									<label class="col-sm-2 control-label" for="username">用户昵称</label>
+									<div class="input-group">
+										<input type="text" class="form-control" id="username" value="{$item.username}" placeholder="用户昵称" readonly="readonly">
+									</div>
+								</div>
+								<div class="form-group has-success">
+									<label class="col-sm-2 control-label" for="username">VIP到期日期</label>
+									<div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy/MM/dd" data-link-field="dtp_input2" data-link-format="yyyy/MM/dd">
+										<input name="vipexpire" class="form-control" type="text" value="{$item.vipexpire:F.formatdate='yyyy/MM/dd'}" readonly="" placeholder="vip到期日期">
+										<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+									</div>
+									<div class="col-sm-offset-2 col-sm-10">
+										<div class="checkbox">
+											<label>
+												<input name="isvip" type="checkbox" id="isvip" value="1" data-toggle="toggle" data-size="mini" data-on="是" data-off="否" data-onstyle="success" data-offstyle="danger" <eq name="item.isvip" value="1">checked="checkend"</eq>>
+												是否VIP
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-warning">
+									<label class="col-sm-2 control-label" for="question">安全问题</label>
+									<div class="input-group">
+										<input name="question" type="text" class="form-control" id="question" value="{$item.question}" placeholder="安全问题">
+									</div>
+								</div>
+								<div class="form-group has-warning">
+									<label class="col-sm-2 control-label" for="anser">问题答案</label>
+									<div class="input-group">
+										<input name="anser" type="text" class="form-control" id="anser" placeholder="留空则不修改">
+									</div>
+								</div>
+								<div class="form-group has-success">
+									<label class="col-sm-2 control-label" for="email">邮箱地址</label>
+									<div class="input-group">
+										<input name="email" type="email" class="form-control" id="email" value="{$item.email}" placeholder="邮箱地址">
+									</div>
+									<div class="col-sm-offset-2 col-sm-10">
+										<div class="checkbox">
+											<label>
+												<input name="isemail" type="checkbox" id="isemail" value="1" data-toggle="toggle" data-size="mini" data-on="已认证" data-off="未认证" data-onstyle="success" data-offstyle="danger" <eq name="item.isemail" value="1">checked="checkend"</eq>>
+												是否认证
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-success">
+									<label class="col-sm-2 control-label" for="mobile">手机号码</label>
+									<div class="input-group">
+										<input name="mobile" type="tel" class="form-control" id="mobile" value="{$item.mobile}" placeholder="手机号码">
+									</div>
+									<div class="col-sm-offset-2 col-sm-10">
+										<div class="checkbox">
+											<label>
+												<input name="ismobile" type="checkbox" id="ismobile" value="1" data-toggle="toggle" data-size="mini" data-on="已认证" data-off="未认证" data-onstyle="success" data-offstyle="danger" <eq name="item.ismobile" value="1">checked="checkend"</eq>>
+												是否认证
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group has-error">
+									<div class="col-sm-offset-2 col-sm-10">
+										<div class="checkbox">
+											<label>
+												<input name="islogin" type="checkbox" id="islogin" value="1" data-toggle="toggle" data-size="mini" data-on="已禁止" data-off="未禁止" data-onstyle="success" data-offstyle="danger" <eq name="item.islogin" value="1">checked="checkend"</eq>>
+												是否禁用此用户
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<button type="submit" class="btn btn-info">更新信息</button>
+									</div>
+								</div>
+							</form>
+						</loop>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</selection>
+<selection name="foot">
+	<script type="text/javascript">
+		$('.form_date').datetimepicker({
+			language:  'zh-CN',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+	</script>
+</selection>

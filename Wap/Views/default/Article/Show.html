@@ -1,0 +1,26 @@
+<extend file="../layout/layout.html" />
+<selection name="title">{$title}</selection>
+<selection name="header">
+ <link href="{$url}/WapPublic/css/video-js.css" rel="stylesheet" type="text/css">
+ <script src="{$url}/WapPublic/js/video.js"></script>
+ <script>
+   videojs.options.flash.swf = "{$url}/WapPublic/video-js.swf";
+ </script>
+</selection>
+<selection name="body">
+  <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="100%" height="100%"
+  poster="{$pic}"
+  data-setup="{}">
+  <source src="{$file}" type='video/mp4' />
+</video>
+</selection>
+<selection name="foot">
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var DIVCSS={
+        height:$(window).height()+'px'
+      }
+      $('.video-js').css(DIVCSS);
+    });
+  </script>
+</selection>
